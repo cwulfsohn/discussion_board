@@ -1,0 +1,45 @@
+<button ng-click="logout()">logout</button>
+<h1>Welcome {{user}}</h1>
+<label>
+Search <input type='text' ng-model="search.$">
+</label>
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Topic</th>
+      <th>Username</th>
+      <th>Posts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="topic in topics | filter:search">
+      <td>{{topic.category}}</td>
+      <td><a href="/#!/topic/{{topic._id}}">{{topic.name}}</a></td>
+      <td><a href="/#!/profile/{{topic._user._id}}">{{topic._user.username}}</a></td>
+      <td>{{topic.posts.length}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1>Add a new Topic</h1>
+<form ng-submit="addTopic()">
+  <label>
+  Topic: <input type='text' ng-model="topic.name">
+  </label>
+  <label>
+   Description: <textarea ng-model="topic.description"></textarea>
+ </label>
+ <label>
+   Category:
+  <select ng-model="topic.category">
+      <option value="">Selection an Option</option>
+      <option value="Python">Python</option>
+      <option value="Ruby">Ruby</option>
+      <option value="MEAN">MEAN</option>
+      <option value="CSS">CSS</option>
+      <option value="HTML">HTML</option>
+  </select>
+  </label>
+  <input type='submit' value='Submit'>
+</form>

@@ -1,0 +1,22 @@
+<a href="/#!/home">Dashboard</a>
+<h3><a href="/#!/profile/{{topic._user._id}}"</a>{{topic._user.username}}</a> posted a topic</h3>
+  <p>{{topic.name}}</p>
+  <p>{{topic.description}}</p>
+  <button ng-click="logout()">logout</button>
+
+<h4>Post your answer here</h4>
+<form ng-submit="addPost()">
+  <textarea ng-model="post.content"></textarea>
+  <input type='submit' value='Post'>
+</form>
+
+<div ng-repeat="post in topic.posts">
+  <p><a href="/#!/profile/{{post.user_id}}">{{post.user}}</a> {{post.content}}</p>
+  <button ng-click="like(post._id)">Like {{post.like.length}}</button>
+  <button ng-click="dislike(post._id)">Dislike{{post.dislike.length}}</button>
+  <div ng-repeat="comment in post.comments">
+    <p><a href="/#!/profile/{{comment.user_id}}">{{comment.user}}</a> {{comment.content}}</p>
+  </div>
+    <textarea ng-model="content"></textarea>
+    <input type='submit' ng-click="addComment(post._id, content)" value='Comment'>
+</div>
